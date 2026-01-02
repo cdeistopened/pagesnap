@@ -1051,15 +1051,20 @@ def download_pdf(session_name):
 
 if __name__ == '__main__':
     import argparse
+    import os
+    
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--camera', type=int, default=0)
-    parser.add_argument('-p', '--port', type=int, default=5000)
+    parser.add_argument('-p', '--port', type=int, default=int(os.environ.get('PORT', 5000)))
     args = parser.parse_args()
     
     page_snap.camera_index = args.camera
     print(f"\nPageSnap Web")
     print(f"============")
     print(f"Camera: {args.camera}")
-    print(f"Open http://localhost:{args.port} in your browser\n")
+    print(f"Port: {args.port}")
+    if args.port == 5000:
+        print(f"Open http://localhost:{args.port} in your browser")
+    print()
     
     app.run(host='0.0.0.0', port=args.port, debug=False, threaded=True)

@@ -1,0 +1,9 @@
+{
+  "build": {
+    "builder": "heroku/builder:22",
+    "buildCommand": "pip install --no-cache-dir -r requirements.txt"
+  },
+  "deploy": {
+    "startCommand": "python web_app.py --port $PORT"
+  }
+}
